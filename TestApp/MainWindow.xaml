@@ -3,21 +3,40 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:local="clr-namespace:TestApp"
+                   xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                    Title="MainWindow"
                    Width="525"
                    Height="300"
+                   Background="{DynamicResource MaterialDesignPaper}"
+                   BorderThickness="0"
+                   FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                   GlowBrush="Black"
+                   ResizeMode="CanResizeWithGrip"
+                   RightWindowCommandsOverlayBehavior="Never"
+                   SaveWindowPosition="True"
+                   TextElement.FontSize="14"
+                   TextElement.FontWeight="Medium"
+                   TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                   WindowStartupLocation="CenterScreen"
+                   WindowTransitionsEnabled="True"
                    mc:Ignorable="d">
     <metro:MetroWindow.Flyouts>
         <metro:FlyoutsControl>
-            <metro:Flyout Width="300" Position="Right" />
+            <metro:Flyout Width="300"
+                          Header="Test"
+                          metro:FlyoutAssist
+                          Position="Right">
+
+                <TextBlock>Some Text</TextBlock>
+            </metro:Flyout>
         </metro:FlyoutsControl>
     </metro:MetroWindow.Flyouts>
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands ShowSeparators="False">
             <Button Click="Button_Click">
-                Test
+                <material:PackIcon Kind="Settings" />
             </Button>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
