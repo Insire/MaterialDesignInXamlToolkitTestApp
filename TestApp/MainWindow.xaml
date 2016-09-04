@@ -26,7 +26,7 @@
         <metro:FlyoutsControl>
             <metro:Flyout Width="300"
                           Header="Test"
-                          metro:FlyoutAssist
+                          material:Flyout
                           Position="Right">
 
                 <TextBlock>Some Text</TextBlock>
