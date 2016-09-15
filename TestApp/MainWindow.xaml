@@ -22,11 +22,13 @@
                    WindowStartupLocation="CenterScreen"
                    WindowTransitionsEnabled="True"
                    mc:Ignorable="d">
+    <metro:MetroWindow.Resources>
+        <local:ViewModel x:Key="vm" />
+    </metro:MetroWindow.Resources>
     <metro:MetroWindow.Flyouts>
         <metro:FlyoutsControl>
             <metro:Flyout Width="300"
                           Header="Test"
-                          material:Flyout
                           Position="Right">
 
                 <TextBlock>Some Text</TextBlock>
@@ -38,7 +40,46 @@
             <Button Click="Button_Click">
                 <material:PackIcon Kind="Settings" />
             </Button>
+
+            <material:PopupBox Margin="0,0,48,0"
+                               Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                               DataContext="{StaticResource vm}"
+                               PlacementMode="BottomAndAlignCentres"
+                               ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                <material:PopupBox.ToggleCheckedContent>
+                    <material:PackIcon Width="24"
+                                       Height="24"
+                                       Kind="Pencil" />
+                </material:PopupBox.ToggleCheckedContent>
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </material:PopupBox>
+
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
-    <Grid />
+    <Grid>
+        <material:PopupBox Margin="0,0,48,0" HorizontalAlignment="Center"
+                               Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                               DataContext="{StaticResource vm}"
+                               PlacementMode="BottomAndAlignCentres"
+                               ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+            <material:PopupBox.ToggleCheckedContent>
+                <material:PackIcon Width="24"
+                                       Height="24"
+                                       Kind="Pencil" />
+            </material:PopupBox.ToggleCheckedContent>
+            <ItemsControl ItemsSource="{Binding Items}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </material:PopupBox>
+    </Grid>
 </metro:MetroWindow>
