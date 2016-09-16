@@ -4,28 +4,49 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 
 namespace TestApp
 {
-    public class ViewModel
+    public class ViewModel : ObservableObject
     {
         public ObservableCollection<Model> Items { get; set; }
+
+        private Model _selectedItem;
+        public Model SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                RaisePropertyChanged(nameof(SelectedItem));
+            }
+        }
 
         public ViewModel()
         {
             Items = new ObservableCollection<Model>
             {
-                new Model {Name="Name1" },
-                new Model {Name="Name2" },
-                new Model {Name="Name3" },
-                new Model {Name="Name4" },
-                new Model {Name="Name5" },
+                new Model {Name="Login1" },
+                new Model {Name="Login2" },
+                new Model {Name="Login3" },
+                new Model {Name="Login4" },
+                new Model {Name="Login5" },
             };
         }
     }
 
-    public class Model
+    public class Model : ObservableObject
     {
-        public string Name { get; set; }
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                RaisePropertyChanged(nameof(Name));
+            }
+        }
     }
 }

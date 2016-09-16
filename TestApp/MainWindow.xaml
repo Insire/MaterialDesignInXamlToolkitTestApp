@@ -19,12 +19,28 @@
                    TextElement.FontSize="14"
                    TextElement.FontWeight="Medium"
                    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                   TitleCaps="False"
                    WindowStartupLocation="CenterScreen"
                    WindowTransitionsEnabled="True"
                    mc:Ignorable="d">
     <metro:MetroWindow.Resources>
         <local:ViewModel x:Key="vm" />
     </metro:MetroWindow.Resources>
+    <metro:MetroWindow.TitleTemplate>
+        <DataTemplate>
+            <TextBlock Margin="8,0,0,0"
+                       VerticalAlignment="Center"
+                       FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                       DataContext="{StaticResource vm}"
+                       TextElement.FontSize="14"
+                       TextElement.FontWeight="Medium">
+                <Run Text="ApplicationName" />
+                <Run Text="@" />
+                <Run Text="{Binding SelectedItem.Name, UpdateSourceTrigger=PropertyChanged}" />
+            </TextBlock>
+        </DataTemplate>
+    </metro:MetroWindow.TitleTemplate>
+
     <metro:MetroWindow.Flyouts>
         <metro:FlyoutsControl>
             <metro:Flyout Width="300"
@@ -40,46 +56,27 @@
             <Button Click="Button_Click">
                 <material:PackIcon Kind="Settings" />
             </Button>
-
-            <material:PopupBox Margin="0,0,48,0"
-                               Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                               DataContext="{StaticResource vm}"
-                               PlacementMode="BottomAndAlignCentres"
-                               ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
-                <material:PopupBox.ToggleCheckedContent>
-                    <material:PackIcon Width="24"
-                                       Height="24"
-                                       Kind="Pencil" />
-                </material:PopupBox.ToggleCheckedContent>
-                <ItemsControl ItemsSource="{Binding Items}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </material:PopupBox>
-
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
     <Grid>
-        <material:PopupBox Margin="0,0,48,0" HorizontalAlignment="Center"
-                               Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                               DataContext="{StaticResource vm}"
-                               PlacementMode="BottomAndAlignCentres"
-                               ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+        <material:PopupBox HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                           DataContext="{StaticResource vm}"
+                           PlacementMode="BottomAndAlignCentres"
+                           ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
             <material:PopupBox.ToggleCheckedContent>
                 <material:PackIcon Width="24"
-                                       Height="24"
-                                       Kind="Pencil" />
+                                   Height="24"
+                                   Kind="Pencil" />
             </material:PopupBox.ToggleCheckedContent>
-            <ItemsControl ItemsSource="{Binding Items}">
+            <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            </ListBox>
         </material:PopupBox>
     </Grid>
 </metro:MetroWindow>
