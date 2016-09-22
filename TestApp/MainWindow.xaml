@@ -24,14 +24,15 @@
                    WindowTransitionsEnabled="True"
                    mc:Ignorable="d">
     <metro:MetroWindow.Resources>
-        <local:ViewModel x:Key="vm" />
+        <local:ViewModel x:Key="vmLogin" />
+        <local:ViewModel x:Key="vmTest" />
     </metro:MetroWindow.Resources>
     <metro:MetroWindow.TitleTemplate>
         <DataTemplate>
             <TextBlock Margin="8,0,0,0"
                        VerticalAlignment="Center"
                        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-                       DataContext="{StaticResource vm}"
+                       DataContext="{StaticResource vmLogin}"
                        TextElement.FontSize="14"
                        TextElement.FontWeight="Medium">
                 <Run Text="ApplicationName" />
@@ -44,39 +45,74 @@
     <metro:MetroWindow.Flyouts>
         <metro:FlyoutsControl>
             <metro:Flyout Width="300"
+                          material:FlyoutAssist.HeaderColorMode="PrimaryLight"
+                          material:FlyoutAssist.HeaderShadowDepth="Depth3"
                           Header="Test"
                           Position="Right">
 
-                <TextBlock>Some Text</TextBlock>
+                <Grid Margin="8">
+                    <material:PopupBox HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                       DataContext="{StaticResource vmLogin}"
+                                       PlacementMode="LeftAndAlignMiddles"
+                                       ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                        <material:PopupBox.ToggleCheckedContent>
+                            <material:PackIcon Width="24"
+                                               Height="24"
+                                               Kind="Pencil" />
+                        </material:PopupBox.ToggleCheckedContent>
+                        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ListBox>
+                    </material:PopupBox>
+                </Grid>
+            </metro:Flyout>
+
+            <metro:Flyout Width="300"
+                          material:FlyoutAssist.HeaderColorMode="PrimaryLight"
+                          material:FlyoutAssist.HeaderShadowDepth="Depth3"
+                          Header="Test"
+                          Position="Right">
+
+                <Grid Margin="8">
+                    <material:PopupBox HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                       DataContext="{StaticResource vmTest}"
+                                       PlacementMode="LeftAndAlignMiddles"
+                                       ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                        <material:PopupBox.ToggleCheckedContent>
+                            <material:PackIcon Width="24"
+                                               Height="24"
+                                               Kind="Pencil" />
+                        </material:PopupBox.ToggleCheckedContent>
+                        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ListBox>
+                    </material:PopupBox>
+                </Grid>
             </metro:Flyout>
         </metro:FlyoutsControl>
     </metro:MetroWindow.Flyouts>
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands ShowSeparators="False">
-            <Button Click="Button_Click">
-                <material:PackIcon Kind="Settings" />
+            <Button Click="Login_Button_Click">
+                <material:PackIcon Kind="Account" />
+            </Button>
+
+            <Button Click="Test_Button_Click">
+                <material:PackIcon Kind="TestTube" />
             </Button>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
-    <Grid>
-        <material:PopupBox HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                           DataContext="{StaticResource vm}"
-                           PlacementMode="BottomAndAlignCentres"
-                           ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
-            <material:PopupBox.ToggleCheckedContent>
-                <material:PackIcon Width="24"
-                                   Height="24"
-                                   Kind="Pencil" />
-            </material:PopupBox.ToggleCheckedContent>
-            <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ListBox>
-        </material:PopupBox>
-    </Grid>
+
 </metro:MetroWindow>

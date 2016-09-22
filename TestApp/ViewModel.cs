@@ -36,6 +36,34 @@ namespace TestApp
         }
     }
 
+    public class TestViewModel : ObservableObject
+    {
+        public ObservableCollection<Model> Items { get; set; }
+
+        private Model _selectedItem;
+        public Model SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                RaisePropertyChanged(nameof(SelectedItem));
+            }
+        }
+
+        public TestViewModel()
+        {
+            Items = new ObservableCollection<Model>
+            {
+                new Model {Name="Test1" },
+                new Model {Name="Test2" },
+                new Model {Name="Test3" },
+                new Model {Name="Test4" },
+                new Model {Name="Test5" },
+            };
+        }
+    }
+
     public class Model : ObservableObject
     {
         private string _name;

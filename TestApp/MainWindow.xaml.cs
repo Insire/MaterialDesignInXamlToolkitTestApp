@@ -10,9 +10,16 @@ namespace TestApp
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
             var flyout = Flyouts.Items[0] as Flyout;
+
+            flyout.IsOpen = !flyout.IsOpen;
+        }
+
+        private void Test_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var flyout = Flyouts.Items[1] as Flyout;
 
             flyout.IsOpen = !flyout.IsOpen;
         }

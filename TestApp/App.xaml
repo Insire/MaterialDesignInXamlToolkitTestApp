@@ -23,9 +23,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.MahApps;component/Themes/MaterialDesignTheme.MahApps.Flyout.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml">
-                    <vm:ViewModelLocator xmlns:vm="clr-namespace:TestApp"
-                                         x:Key="Locator"
-                                         d:IsDataSource="True" />
+
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <!--  MahApps Brushes  -->
