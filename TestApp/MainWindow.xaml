@@ -35,7 +35,7 @@
                        DataContext="{StaticResource vmLogin}"
                        TextElement.FontSize="14"
                        TextElement.FontWeight="Medium">
-                <Run Text="ApplicationName" />
+                <Run Text="Name" />
                 <Run Text="@" />
                 <Run Text="{Binding SelectedItem.Name, UpdateSourceTrigger=PropertyChanged}" />
             </TextBlock>
@@ -74,7 +74,7 @@
             </metro:Flyout>
 
             <metro:Flyout Width="300"
-                          material:FlyoutAssist.HeaderColorMode="PrimaryLight"
+                          material:FlyoutAssist.HeaderColorMode="PrimaryDark"
                           material:FlyoutAssist.HeaderShadowDepth="Depth3"
                           Header="Test"
                           Position="Right">
