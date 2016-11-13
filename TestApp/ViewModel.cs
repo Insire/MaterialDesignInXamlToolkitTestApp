@@ -38,6 +38,8 @@ namespace TestApp
         public ICommand WorkCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
 
+        public ICommand WorkResultCommand { get; private set; }
+
         private Model _selectedItem;
         public Model SelectedItem
         {
@@ -52,6 +54,7 @@ namespace TestApp
         public ViewModel()
         {
             WorkCommand = new RelayCommand<object>(Work, CanWork);
+            WorkResultCommand = new RelayCommand(WorkResult, CanWork);
             CancelCommand = new RelayCommand(Cancel, CanCancel);
 
             Source = new CancellationTokenSource();
@@ -79,7 +82,12 @@ namespace TestApp
 
         private bool CanWork(object item)
         {
-            return true;
+            return !IsBusy;
+        }
+
+        private bool CanWork()
+        {
+            return !IsBusy;
         }
 
         private async void Work(object item)
@@ -115,6 +123,37 @@ namespace TestApp
                else
                    Result += $"Running {model.Name}{Environment.NewLine}";
            });
+        }
+
+        private async void WorkResult()
+        {
+            IsBusy = true;
+            try
+            {
+                Result += await WorkResultInternalAsync();
+                Result += $"Success{Environment.NewLine}";
+            }
+            catch (OperationCanceledException)
+            {
+                Result += $"Canceled{Environment.NewLine}";
+            }
+            finally
+            {
+                IsBusy = false;
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
+        private async Task<string> WorkResultInternalAsync()
+        {
+            Source = new CancellationTokenSource();
+            return await Task.Run(() =>
+            {
+                Task.Delay(2000).Wait();
+                Source.Token.ThrowIfCancellationRequested();
+
+                return $"Running{Environment.NewLine}";
+            });
         }
     }
 

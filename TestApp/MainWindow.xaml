@@ -141,9 +141,11 @@
     <DockPanel Margin="5"
                DataContext="{StaticResource vmLogin}"
                LastChildFill="True">
-        <Button Command="{Binding WorkCommand}"
-                Content="Run"
-                DockPanel.Dock="Top" />
+        <UniformGrid Columns="2" DockPanel.Dock="Top">
+            <Button Command="{Binding WorkCommand}" Content="Run" />
+            <Button Command="{Binding WorkResultCommand}" Content="Run (Result)" />
+        </UniformGrid>
+
         <Button Command="{Binding CancelCommand}"
                 Content="Cancel"
                 DockPanel.Dock="Bottom" />
