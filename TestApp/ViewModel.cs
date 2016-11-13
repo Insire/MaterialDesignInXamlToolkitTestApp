@@ -1,16 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace TestApp
 {
     public class ViewModel : ObservableObject
     {
-        public ObservableCollection<Model> Items { get; set; }
+        private string _result;
+        public string Result
+        {
+            get { return _result; }
+            private set
+            {
+                _result = value;
+                RaisePropertyChanged(nameof(Result));
+            }
+        }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            private set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(nameof(IsBusy));
+            }
+        }
+
+        public ObservableCollection<Model> Items { get; private set; }
+        public CancellationTokenSource Source { get; private set; }
+
+        public ICommand WorkCommand { get; private set; }
+        public ICommand CancelCommand { get; private set; }
 
         private Model _selectedItem;
         public Model SelectedItem
@@ -25,6 +51,11 @@ namespace TestApp
 
         public ViewModel()
         {
+            WorkCommand = new RelayCommand<object>(Work, CanWork);
+            CancelCommand = new RelayCommand(Cancel, CanCancel);
+
+            Source = new CancellationTokenSource();
+
             Items = new ObservableCollection<Model>
             {
                 new Model {Name="Login1" },
@@ -33,6 +64,57 @@ namespace TestApp
                 new Model {Name="Login4" },
                 new Model {Name="Login5" },
             };
+        }
+
+        private bool CanCancel()
+        {
+            return Source?.IsCancellationRequested == false
+                && IsBusy;
+        }
+
+        private void Cancel()
+        {
+            Source.Cancel();
+        }
+
+        private bool CanWork(object item)
+        {
+            return true;
+        }
+
+        private async void Work(object item)
+        {
+            IsBusy = true;
+            try
+            {
+                await WorkInternalAsync(item);
+                Result += $"Success{Environment.NewLine}";
+            }
+            catch (OperationCanceledException)
+            {
+                Result += $"Canceled{Environment.NewLine}";
+            }
+            finally
+            {
+                IsBusy = false;
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
+        private Task WorkInternalAsync(object item)
+        {
+            Source = new CancellationTokenSource();
+            return Task.Run(() =>
+           {
+               Task.Delay(2000).Wait();
+               Source.Token.ThrowIfCancellationRequested();
+
+               var model = item as Model;
+               if (model == null)
+                   Result += $"Running{Environment.NewLine}";
+               else
+                   Result += $"Running {model.Name}{Environment.NewLine}";
+           });
         }
     }
 
