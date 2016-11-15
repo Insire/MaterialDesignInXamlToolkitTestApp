@@ -23,5 +23,12 @@ namespace TestApp
 
             flyout.IsOpen = !flyout.IsOpen;
         }
+
+        private void Zoom_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var flyout = Flyouts.Items[2] as Flyout;
+
+            flyout.IsOpen = !flyout.IsOpen;
+        }
     }
 }
