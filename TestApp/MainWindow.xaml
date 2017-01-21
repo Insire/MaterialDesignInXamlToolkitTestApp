@@ -1,11 +1,9 @@
 ﻿<metro:MetroWindow x:Class="TestApp.MainWindow"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
                    xmlns:local="clr-namespace:TestApp"
                    xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
-                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                    Title="MainWindow"
                    Width="525"
@@ -23,8 +21,7 @@
                    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                    TitleCaps="False"
                    WindowStartupLocation="CenterScreen"
-                   WindowTransitionsEnabled="True"
-                   mc:Ignorable="d">
+                   WindowTransitionsEnabled="True">
     <metro:MetroWindow.Resources>
         <local:ViewModel x:Key="vmLogin" />
         <local:ViewModel x:Key="vmTest" />
@@ -43,8 +40,8 @@
                            UniformCornerRadius="14">
                 <ProgressBar HorizontalAlignment="Center"
                              VerticalAlignment="Center"
-                             Style="{StaticResource MaterialDesignCircularProgressBar}"
                              IsIndeterminate="True"
+                             Style="{StaticResource MaterialDesignCircularProgressBar}"
                              Value="0" />
             </material:Card>
         </ControlTemplate>
@@ -53,8 +50,8 @@
         <DataTemplate>
             <TextBlock Margin="8,0,0,0"
                        VerticalAlignment="Center"
-                       FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
                        DataContext="{StaticResource vmLogin}"
+                       FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
                        TextElement.FontSize="14"
                        TextElement.FontWeight="Medium">
                 <Run Text="Name" />
@@ -67,8 +64,6 @@
     <metro:MetroWindow.Flyouts>
         <metro:FlyoutsControl>
             <metro:Flyout Width="300"
-                          material:FlyoutAssist.HeaderColorMode="PrimaryLight"
-                          material:FlyoutAssist.HeaderShadowDepth="Depth3"
                           AnimateOpacity="True"
                           CloseButtonIsCancel="True"
                           Header="Login"
@@ -77,9 +72,9 @@
                 <Grid Margin="8">
                     <material:PopupBox HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
                                        DataContext="{StaticResource vmLogin}"
                                        PlacementMode="LeftAndAlignMiddles"
+                                       Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
                                        ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
                         <material:PopupBox.ToggleCheckedContent>
                             <material:PackIcon Width="24"
@@ -98,17 +93,15 @@
             </metro:Flyout>
 
             <metro:Flyout Width="300"
-                          material:FlyoutAssist.HeaderColorMode="PrimaryDark"
-                          material:FlyoutAssist.HeaderShadowDepth="Depth3"
                           Header="Test"
                           Position="Right">
 
                 <DockPanel Margin="8">
                     <material:PopupBox HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
-                                       Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
                                        DataContext="{StaticResource vmTest}"
                                        PlacementMode="LeftAndAlignMiddles"
+                                       Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
                                        ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
                         <material:PopupBox.ToggleCheckedContent>
                             <material:PackIcon Width="24"
@@ -127,8 +120,6 @@
             </metro:Flyout>
 
             <metro:Flyout Width="300"
-                          material:FlyoutAssist.HeaderColorMode="PrimaryDark"
-                          material:FlyoutAssist.HeaderShadowDepth="Depth3"
                           Header="Icons"
                           Position="Right">
                 <StackPanel Orientation="Vertical">
@@ -180,7 +171,7 @@
                     </icons:PackIconMaterial>
                 </StackPanel>
             </metro:Flyout>
-            
+
         </metro:FlyoutsControl>
     </metro:MetroWindow.Flyouts>
     <metro:MetroWindow.RightWindowCommands>
