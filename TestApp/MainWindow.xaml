@@ -4,6 +4,7 @@
                    xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
                    xmlns:local="clr-namespace:TestApp"
                    xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+                   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                    Title="MainWindow"
                    Width="525"
@@ -31,20 +32,24 @@
         </ControlTemplate>
 
         <ControlTemplate x:Key="IsBusy">
-            <material:Card Grid.Row="5"
-                           Grid.Column="0"
-                           Margin="12,12,12,12"
-                           Padding="4"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           UniformCornerRadius="14">
+            <materialDesign:Card Grid.Row="5"
+                                 Grid.Column="0"
+                                 Margin="12,12,12,12"
+                                 Padding="4"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 UniformCornerRadius="14">
                 <ProgressBar HorizontalAlignment="Center"
                              VerticalAlignment="Center"
                              IsIndeterminate="True"
                              Style="{StaticResource MaterialDesignCircularProgressBar}"
                              Value="0" />
-            </material:Card>
+            </materialDesign:Card>
         </ControlTemplate>
+        <ControlTemplate x:Key="CheckedContent">
+            <TextBlock Text="This is not visible, due to failing ElementBinding" />
+        </ControlTemplate>
+
     </metro:MetroWindow.Resources>
     <metro:MetroWindow.TitleTemplate>
         <DataTemplate>
@@ -70,17 +75,17 @@
                           Position="Right">
 
                 <Grid Margin="8">
-                    <material:PopupBox HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       DataContext="{StaticResource vmLogin}"
-                                       PlacementMode="LeftAndAlignMiddles"
-                                       Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                       ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
-                        <material:PopupBox.ToggleCheckedContent>
-                            <material:PackIcon Width="24"
-                                               Height="24"
-                                               Kind="Pencil" />
-                        </material:PopupBox.ToggleCheckedContent>
+                    <materialDesign:PopupBox HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             DataContext="{StaticResource vmLogin}"
+                                             PlacementMode="LeftAndAlignMiddles"
+                                             Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                             ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                        <materialDesign:PopupBox.ToggleCheckedContent>
+                            <materialDesign:PackIcon Width="24"
+                                                     Height="24"
+                                                     Kind="Pencil" />
+                        </materialDesign:PopupBox.ToggleCheckedContent>
                         <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -88,7 +93,7 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ListBox>
-                    </material:PopupBox>
+                    </materialDesign:PopupBox>
                 </Grid>
             </metro:Flyout>
 
@@ -97,17 +102,17 @@
                           Position="Right">
 
                 <DockPanel Margin="8">
-                    <material:PopupBox HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       DataContext="{StaticResource vmTest}"
-                                       PlacementMode="LeftAndAlignMiddles"
-                                       Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                       ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
-                        <material:PopupBox.ToggleCheckedContent>
-                            <material:PackIcon Width="24"
-                                               Height="24"
-                                               Kind="Pencil" />
-                        </material:PopupBox.ToggleCheckedContent>
+                    <materialDesign:PopupBox HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             DataContext="{StaticResource vmTest}"
+                                             PlacementMode="LeftAndAlignMiddles"
+                                             Style="{DynamicResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                             ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionAccentPopupBox">
+                        <materialDesign:PopupBox.ToggleCheckedContent>
+                            <materialDesign:PackIcon Width="24"
+                                                     Height="24"
+                                                     Kind="Pencil" />
+                        </materialDesign:PopupBox.ToggleCheckedContent>
                         <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -115,7 +120,7 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ListBox>
-                    </material:PopupBox>
+                    </materialDesign:PopupBox>
                 </DockPanel>
             </metro:Flyout>
 
@@ -177,11 +182,11 @@
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands ShowSeparators="False">
             <Button Click="Login_Button_Click">
-                <material:PackIcon Kind="Account" />
+                <materialDesign:PackIcon Kind="Account" />
             </Button>
 
             <Button Click="Test_Button_Click">
-                <material:PackIcon Kind="TestTube" />
+                <materialDesign:PackIcon Kind="TestTube" />
             </Button>
 
             <Button Click="Zoom_Button_Click">
@@ -190,32 +195,61 @@
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
 
-    <DockPanel Margin="5"
-               DataContext="{StaticResource vmLogin}"
-               LastChildFill="True">
-        <UniformGrid Columns="2" DockPanel.Dock="Top">
-            <Button Command="{Binding WorkCommand}" Content="Run" />
-            <Button Command="{Binding WorkResultCommand}" Content="Run (Result)" />
-        </UniformGrid>
+    <materialDesign:TransitioningContent>
+        <materialDesign:TransitioningContent.OpeningEffects>
+            <materialDesign:TransitionEffect Kind="FadeIn" />
+        </materialDesign:TransitioningContent.OpeningEffects>
+        <DockPanel Margin="5"
+                   DataContext="{StaticResource vmLogin}"
+                   LastChildFill="True">
+            <UniformGrid Columns="2" DockPanel.Dock="Top">
+                <Button Command="{Binding WorkCommand}" Content="Run" />
+                <Button Command="{Binding WorkResultCommand}" Content="Run (Result)" />
 
-        <Button Command="{Binding CancelCommand}"
-                Content="Cancel"
-                DockPanel.Dock="Bottom" />
-        <ContentControl>
-            <ContentControl.Style>
-                <Style TargetType="ContentControl">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                            <Setter Property="Template" Value="{StaticResource IsBusy}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged}" Value="False">
-                            <Setter Property="Template" Value="{StaticResource Result}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ContentControl.Style>
-        </ContentControl>
+                <ToggleButton x:Name="DetailViewToggleButton" Style="{StaticResource MaterialDesignActionToggleButton}">
+                    <ToggleButton.Content>
+                        <materialDesign:PackIcon Kind="FormatListNumbers" />
+                    </ToggleButton.Content>
+                    <materialDesign:ToggleButtonAssist.OnContent>
+                        <materialDesign:PackIcon Kind="Settings" />
+                    </materialDesign:ToggleButtonAssist.OnContent>
+                </ToggleButton>
+            </UniformGrid>
 
-    </DockPanel>
+            <Button Command="{Binding CancelCommand}"
+                    Content="Cancel"
+                    DockPanel.Dock="Bottom" />
+
+            <ContentControl>
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Style.Triggers>
+
+                            <DataTrigger Binding="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                <Setter Property="Template" Value="{StaticResource IsBusy}" />
+                            </DataTrigger>
+
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsBusy}" Value="False" />
+                                    <Condition Binding="{Binding IsChecked, ElementName=DetailViewToggleButton}" Value="False" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Template" Value="{StaticResource Result}" />
+                            </MultiDataTrigger>
+
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsBusy}" Value="False" />
+                                    <Condition Binding="{Binding IsChecked, ElementName=DetailViewToggleButton}" Value="True" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Template" Value="{StaticResource CheckedContent}" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+
+        </DockPanel>
+    </materialDesign:TransitioningContent>
 
 </metro:MetroWindow>
