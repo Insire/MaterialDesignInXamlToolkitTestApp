@@ -155,7 +155,7 @@
                         </ContentControl>
                     </ToggleButton>
 
-                    <icons:PackIconMaterial>
+                    <icons:PackIconMaterial Kind="Magnify">
                         <icons:PackIconMaterial.Style>
                             <Style TargetType="{x:Type icons:PackIconMaterial}">
                                 <Setter Property="HorizontalAlignment" Value="Center" />

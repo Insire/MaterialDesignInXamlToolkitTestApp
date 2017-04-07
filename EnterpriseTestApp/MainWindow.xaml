@@ -1,0 +1,311 @@
+﻿<metro:MetroWindow x:Class="EnterpriseTestApp.MainWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                   xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+                   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                   Title="MainWindow"
+                   Width="525"
+                   Height="300"
+                   Background="{DynamicResource MaterialDesignPaper}"
+                   BorderThickness="0"
+                   FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+                   GlowBrush="Black"
+                   LeftWindowCommandsOverlayBehavior="Flyouts"
+                   ResizeMode="CanResizeWithGrip"
+                   RightWindowCommandsOverlayBehavior="Flyouts"
+                   SaveWindowPosition="True"
+                   TextElement.FontSize="14"
+                   TextElement.FontWeight="Medium"
+                   TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                   TitleCaps="False"
+                   WindowStartupLocation="CenterScreen"
+                   WindowTransitionsEnabled="True">
+    <metro:MetroWindow.Resources>
+        <Style TargetType="{x:Type icons:PackIconFontAwesome}">
+            <Setter Property="Foreground" Value="#333333" />
+        </Style>
+    </metro:MetroWindow.Resources>
+<DockPanel LastChildFill="True">
+        <StackPanel HorizontalAlignment="Stretch"
+                    DockPanel.Dock="Top"
+                    Orientation="Vertical">
+            <Menu>
+                <MenuItem Header="File">
+                    <MenuItem Header="Open">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="File" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Save">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="File" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Delete">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="File" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="View">
+                    <MenuItem Header="Map">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="Map" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Book">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="Book" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Medium">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="Medium" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Item">
+                    <MenuItem Header="Item">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="Map" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Item">
+                    <MenuItem Header="Item">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="Map" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Item">
+                    <MenuItem Header="Item">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="Map" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Item">
+                    <MenuItem Header="Item">
+                        <MenuItem.Icon>
+                            <icons:PackIconFontAwesome Kind="Map" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+
+            <ToolBar HorizontalAlignment="Left" DockPanel.Dock="Top">
+                <Button>
+                    <icons:PackIconFontAwesome Kind="File" />
+                </Button>
+                <Button>
+                    <icons:PackIconFontAwesome Kind="Folder" />
+                </Button>
+                <Button>
+                    <icons:PackIconFontAwesome Kind="Magic" />
+                </Button>
+                <Button>
+                    <icons:PackIconFontAwesome Kind="Magnet" />
+                </Button>
+                <Button>
+                    <icons:PackIconFontAwesome Kind="Suitcase" />
+                </Button>
+                <Button>
+                    <icons:PackIconFontAwesome Kind="Table" />
+                </Button>
+            </ToolBar>
+        </StackPanel>
+
+        <StatusBar HorizontalAlignment="Stretch" DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock>07.04.2017</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock>Notifications</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TreeView Grid.Column="0"
+                      Width="400"
+                      DockPanel.Dock="Left">
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <DockPanel LastChildFill="False">
+                            <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="Database" />
+                            <TextBlock DockPanel.Dock="Right" Text="Root" />
+                        </DockPanel>
+                    </TreeViewItem.Header>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <DockPanel LastChildFill="False">
+                                <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="Table" />
+                                <TextBlock DockPanel.Dock="Right" Text="CatalogGroup" />
+                            </DockPanel>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <DockPanel LastChildFill="False">
+                                <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="Table" />
+                                <TextBlock DockPanel.Dock="Right" Text="CatalogGroup" />
+                            </DockPanel>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <DockPanel LastChildFill="False">
+                                <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="Table" />
+                                <TextBlock DockPanel.Dock="Right" Text="CatalogGroup" />
+                            </DockPanel>
+                        </TreeViewItem.Header>
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <DockPanel LastChildFill="False">
+                                    <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="Folder" />
+                                    <TextBlock DockPanel.Dock="Right" Text="VariationGroup" />
+                                </DockPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <DockPanel LastChildFill="False">
+                                        <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="File" />
+                                        <TextBlock DockPanel.Dock="Right" Text="Article" />
+                                    </DockPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <DockPanel LastChildFill="False">
+                                        <icons:PackIconFontAwesome DockPanel.Dock="Left"
+                                                                   Foreground="Red"
+                                                                   Kind="File" />
+                                        <TextBlock DockPanel.Dock="Right" Text="Article" />
+                                    </DockPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <DockPanel LastChildFill="False">
+                                        <icons:PackIconFontAwesome DockPanel.Dock="Left"
+                                                                   Foreground="Green"
+                                                                   Kind="File" />
+                                        <TextBlock DockPanel.Dock="Right" Text="Article" />
+                                    </DockPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <DockPanel LastChildFill="False">
+                                        <icons:PackIconFontAwesome DockPanel.Dock="Left"
+                                                                   Foreground="Yellow"
+                                                                   Kind="File" />
+                                        <TextBlock DockPanel.Dock="Right" Text="Article" />
+                                    </DockPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <DockPanel LastChildFill="False">
+                                    <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="Folder" />
+                                    <TextBlock DockPanel.Dock="Right" Text="VariationGroup" />
+                                </DockPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <DockPanel LastChildFill="False">
+                                        <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="File" />
+                                        <TextBlock DockPanel.Dock="Right" Text="Article" />
+                                    </DockPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <DockPanel LastChildFill="False">
+                                        <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="File" />
+                                        <TextBlock DockPanel.Dock="Right" Text="Article" />
+                                    </DockPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <DockPanel LastChildFill="False">
+                                    <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="Folder" />
+                                    <TextBlock DockPanel.Dock="Right" Text="VariationGroup" />
+                                </DockPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <DockPanel LastChildFill="False">
+                                        <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="File" />
+                                        <TextBlock DockPanel.Dock="Right" Text="Article" />
+                                    </DockPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <DockPanel LastChildFill="False">
+                                    <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="Folder" />
+                                    <TextBlock DockPanel.Dock="Right" Text="VariationGroup" />
+                                </DockPanel>
+                            </TreeViewItem.Header>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <DockPanel LastChildFill="False">
+                                        <icons:PackIconFontAwesome DockPanel.Dock="Left" Kind="File" />
+                                        <TextBlock DockPanel.Dock="Right" Text="Article" />
+                                    </DockPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+
+            <GridSplitter Grid.Column="1"
+                          Width="5"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch" />
+
+            <TabControl Grid.Column="2">
+                <TabItem Header="LiveEdit">
+                    
+                </TabItem>
+                <TabItem Header="MasterData">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBox material:HintAssist.Hint="Article Number" Grid.Row="0" material:HintAssist.IsFloating="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        <TextBox material:HintAssist.Hint="Description" Grid.Row="2" material:HintAssist.IsFloating="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        <TextBox material:HintAssist.Hint="Description" Grid.Row="4" material:HintAssist.IsFloating="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        <TextBox material:HintAssist.Hint="Description" Grid.Row="6" material:HintAssist.IsFloating="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        <TextBox material:HintAssist.Hint="Description" Grid.Row="8" material:HintAssist.IsFloating="True" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="MediaAssets"/>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+</metro:MetroWindow>
